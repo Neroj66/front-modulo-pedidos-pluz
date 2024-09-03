@@ -19,6 +19,11 @@ jobs:
         with:
           submodules: true
           lfs: false
+      
+      # Agregar el paso de instalación de dependencias con --legacy-peer-deps
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -44,3 +49,4 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ASHY_GRASS_009F4900F }}
           action: "close"
+

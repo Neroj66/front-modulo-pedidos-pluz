@@ -1,0 +1,230 @@
+/* Aseguramos que el backdrop del primer modal esté en un nivel inferior */
+#firstModal .modal-backdrop {
+  z-index: 1040;
+}
+
+#firstModal {
+  z-index: 1041;
+}
+
+/* Aseguramos que el backdrop del segundo modal esté en un nivel superior */
+#secondModal .modal-backdrop {
+  z-index: 1055; /* Mayor que el primer modal para que lo cubra */
+  background-color: rgba(0, 0, 0, 0.5); /* Ajusta la opacidad del backdrop si es necesario */
+}
+
+/* Aseguramos que el segundo modal esté en un nivel superior al backdrop */
+#secondModal {
+  z-index: 1060; /* Mayor que el backdrop para que esté encima */
+}
+
+
+.full-screen-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../assets/img/pluz_fondo.jpg') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-container {
+  width: 63%;
+  max-width: 3500vh;
+  margin: 0;
+  padding-left: 5%; /* Aumenta el padding-left para moverlo más a la derecha */
+  margin-right: 5%;
+  margin-top: 10px;
+  padding-top: 6%;
+  padding-right: 340px;
+  margin-left: 10%;
+}
+
+.card-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0;
+  padding-left: 0;
+  margin-left: 0; /* Disminuye este valor para mover el card-container hacia la izquierda */
+  margin-bottom:40px; /* Disminuye este valor para colocarlo un poco más abajo */
+  padding-top: 0px; /* Añade un poco de padding-top para ajustar la altura */
+  padding-right: 0px;
+  margin-right: 240px;
+  margin-top: 40%;
+}
+
+
+.footer {
+  position: absolute; /* Asegura que el footer esté al final de la pantalla */
+  bottom: 0;
+  left: 0;
+  width: 100%; /* Asegura que el footer abarque todo el ancho */
+  background-color: #003366  !important; /* Asegura que el fondo del footer sea visible */
+}
+
+.footer-item {
+  padding: 0 5vh; /* Ajusta según tus necesidades */
+}
+
+.btn-blue {
+  border-color: #0059A9 !important;
+  background-color: #0059A9 !important;
+  color: white;
+}
+
+.border-blue {
+  border-color: #0059A9 !important;
+}
+body {
+  background-color: #EDF3FB; 
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .printableTable, .printableTable * {
+    visibility: visible;
+  }
+  .printableTable {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+.highlight {
+    background-color: #00BFFF; /* Celeste */
+    color: white;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+th {
+    background-color: #f2f2f2;
+}
+
+.vertical-center{
+  display: flex;
+  margin-top: 30%;
+  align-items: center;
+  justify-content: center; /* opcional, si también quieres centrar horizontalmente */
+  height: 100%;
+}
+
+.status-badge {
+  display: inline-flex; /* Usamos flexbox para alinear verticalmente */
+  margin-top: 15px;
+  align-items: center; /* Centra verticalmente el contenido */
+  padding: 5px 10px; /* Ajusta el padding según tus necesidades */
+  border-radius: 4px; /* Opcional: Redondea las esquinas */
+}
+
+/* Estilos específicos para cada estado (si es necesario) */
+.status-badge.bg-primary {
+  color: white; /* Cambia el color del texto para mayor visibilidad */
+}
+/* Asegúrate de que los estilos se apliquen correctamente a los elementos th */
+th {
+  cursor: pointer;
+  position: relative; /* Añadir esta línea para asegurarse de que los pseudo-elementos se posicionen correctamente */
+  
+
+}
+
+/* Indicador de ordenamiento ascendente */
+th.asc::after {
+  content: ' ▲'; /* Añadir una flecha hacia arriba */
+  position: absolute;
+  right: 8px;
+  color: green; /* Cambia el color aquí */
+}
+
+/* Indicador de ordenamiento descendente */
+th.desc::after {
+  content: ' ▼'; /* Añadir una flecha hacia abajo */
+  position: absolute;
+  right: 8px;
+  color: blue; /* Cambia el color aquí */
+}
+
+.header-cell {
+  padding-right: 35px; /* Ajusta el valor según la cantidad de espacio en blanco que deseas agregar */
+}
+
+.pagination {
+  --bs-pagination-active-bg: #00BFFF;
+  --bs-pagination-active-border-color: #00BFFF;
+  --bs-pagination-color: black;
+  --bs-pagination-disabled-color: #6c757d;
+    --bs-pagination-disabled-bg: #fff;
+    --bs-pagination-disabled-border-color: #dee2e6;
+  
+}
+/* styles.css */
+
+/* mystyles.css */
+
+/* Estilo para el contenedor del diagrama de proceso */
+.process-diagram {
+  display: flex;
+  flex-direction: column; /* Cambia la dirección a vertical */
+  align-items: center; /* Centra horizontalmente los pasos del proceso */
+}
+
+/* Estilo para los pasos del proceso */
+.process-step {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative; /* Permite posicionar las flechas correctamente */
+}
+
+/* Estilo para los estados dentro de los pasos del proceso */
+.step-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* Estilo para la línea de conexión entre los pasos */
+.process-step-line {
+  position: relative;
+  top: 15px; /* Alinea la línea verticalmente en el centro del paso */
+  left: 0px; /* Ajusta la posición horizontal de la línea */
+  width: 2px; /* Grosor de la línea */
+  height: 60px; /* Longitud de la línea */
+  background-color: #007bff; /* Color de la línea */
+  transform: translateY(-50%); /* Centra verticalmente la línea */
+}
+
+/* Estilo para la punta de la flecha */
+.process-step-line::after {
+  content: "";
+  position: absolute;
+  top: calc(100% - 5px); /* Ajusta la posición vertical de la punta de la flecha */
+  left: -4px; /* Ajusta la posición horizontal de la punta de la flecha */
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent; /* Tamaño de la punta de la flecha */
+  border-right: 5px solid transparent; /* Tamaño de la punta de la flecha */
+  border-top: 10px solid #007bff; /* Tamaño y color de la punta de la flecha */
+}
+
+.custom-modal {
+  max-width: 40%; /* Ancho máximo personalizado */
+}
+

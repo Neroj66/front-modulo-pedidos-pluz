@@ -527,7 +527,6 @@ const Aprobar = ({username}) => {
           </div>
           <div 
           style={{ 
-            color: '#ff0000', // Cambia este color según lo desees
             padding: '10px', 
             border: '2px solid #007bff', 
             borderRadius: '5px', 
@@ -652,7 +651,6 @@ const Aprobar = ({username}) => {
             </div>
             <div 
                 style={{ 
-                  color: '#ff0000', // Cambia este color según lo desees
                   padding: '10px', 
                   border: '2px solid #007bff', 
                   borderRadius: '5px', 

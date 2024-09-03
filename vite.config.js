@@ -8,4 +8,7 @@ export default defineConfig({
     host: '10.155.241.37', // o una IP específica como '192.168.1.100'
     port: 4000
   },
+  build: {
+    outDir: 'build' // Cambia esto a 'build' si es lo que necesitas
+  }
 })

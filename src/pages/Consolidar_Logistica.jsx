@@ -58,7 +58,7 @@ const Consolidar_Logistica = ({ username }) => {
       params.dateTo = dateTo;
     }
 
-    Axios.get("http://10.155.241.37:4001/consolidador/logistica", { params })
+    Axios.get("https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/consolidador/logistica", { params })
       .then((response) => {
         setPedidos(response.data);
         setCurrentPage(1); // Reset page to 1 after new data fetch

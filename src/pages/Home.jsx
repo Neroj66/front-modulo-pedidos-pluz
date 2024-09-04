@@ -68,7 +68,7 @@ const Home = () => {
   };
 
   const getPedidos = () => {
-    Axios.get('http://10.155.241.37:4001/pedidos').then((response) => {
+    Axios.get('https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/pedidos').then((response) => {
       setPedidos(response.data);
     });
   };

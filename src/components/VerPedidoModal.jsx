@@ -8,7 +8,7 @@ const VerPedidoModal = ({ pedido, onClose }) => {
 
   useEffect(() => {
     if (pedido) {
-      Axios.get(`http://10.155.241.37:4001/pedidos_detalle/${pedido.id}`)
+      Axios.get(`https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/pedidos_detalle/${pedido.id}`)
         .then((response) => {
           setDetalle(response.data);
         })

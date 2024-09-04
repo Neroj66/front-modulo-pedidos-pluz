@@ -19,7 +19,7 @@ const Login = () => {
       password: password
     };
     
-    fetch('http://10.155.241.37:4001/login', {
+    fetch('https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

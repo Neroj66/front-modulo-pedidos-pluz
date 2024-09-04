@@ -53,7 +53,7 @@ const Materiales_Pedidos = ({username}) => {
   
 
   const getPedidos = () => {
-    Axios.get("http://10.155.241.37:4001/pedidos_detalle").then((response) => {
+    Axios.get("https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/pedidos_detalle").then((response) => {
       setPedidos(response.data);
     })
   }

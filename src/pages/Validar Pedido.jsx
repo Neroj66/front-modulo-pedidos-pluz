@@ -50,7 +50,7 @@ const Validar = ({username}) => {
 
   const obtenerUser = async (user) => {
     try {
-      const response = await Axios.get(`http://10.155.241.37:4001/obtenerUser/${user}`);
+      const response = await Axios.get(`https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/obtenerUser/${user}`);
       setUserData(response.data);
     } catch (error) {
       if (error.response) {
@@ -69,7 +69,7 @@ const Validar = ({username}) => {
   const pedidosByLiquidador = async (liquidador_id) => {
     try {
         
-        const response = await Axios.get(`http://10.155.241.37:4001/pedidos/liquidador/${liquidador_id}`);
+        const response = await Axios.get(`https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/pedidos/liquidador/${liquidador_id}`);
         console.log('Pedidos recibidos:', response.data); // Agregar este console.log
         setPedidos(response.data);
     } catch (error) {
@@ -117,7 +117,7 @@ const Validar = ({username}) => {
       allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        Axios.put("http://10.155.241.37:4001/validar", dataToUpdate)
+        Axios.put("https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/validar", dataToUpdate)
         .then(() => {
         pedidosByLiquidador(userData[0].id); // Actualiza los pedidos del sector
           Swal.fire({
@@ -157,7 +157,7 @@ const Validar = ({username}) => {
       allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        Axios.put("http://10.155.241.37:4001/validar", dataToUpdate)
+        Axios.put("https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/validar", dataToUpdate)
         .then(() => {
         pedidosByLiquidador(userData[0].id); // Actualiza los pedidos del sector
           Swal.fire({

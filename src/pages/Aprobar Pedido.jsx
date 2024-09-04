@@ -84,7 +84,7 @@ const Aprobar = ({username}) => {
 
   const obtenerUser = async (user) => {
     try {
-      const response = await Axios.get(`http://10.155.241.37:4001/obtenerUser/${user}`);
+      const response = await Axios.get(`https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/obtenerUser/${user}`);
       setUserData(response.data);
     } catch (error) {
       if (error.response) {
@@ -103,7 +103,7 @@ const Aprobar = ({username}) => {
   const pedidosBySector = async (sector) => {
     try {
         
-        const response = await Axios.get(`http://10.155.241.37:4001/pedidos/sector/${sector}`);
+        const response = await Axios.get(`https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/pedidos/sector/${sector}`);
         console.log('Pedidos recibidos:', response.data); // Agregar este console.log
         setPedidos(response.data);
     } catch (error) {
@@ -191,7 +191,7 @@ const Aprobar = ({username}) => {
 
   
     // Enviar solicitud de actualización
-    Axios.put("http://10.155.241.37:4001/update", data)
+    Axios.put("https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/update", data)
       .then(() => {
         pedidosBySector(userData[0].a_cargo);
         setShowEditModal(false); // Cerrar el modal de edición después de actualizar
@@ -215,7 +215,7 @@ const Aprobar = ({username}) => {
     // Función para obtener el detalle del pedido
     const fetchPedidoDetalle = async (pedidoId) => {
       try {
-        const response = await Axios.get(`http://10.155.241.37:4001/pedidos_detalle/${pedidoId}`);
+        const response = await Axios.get(`https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/pedidos_detalle/${pedidoId}`);
         return response.data;
       } catch (error) {
         console.error('Error fetching pedido detalle:', error);
@@ -294,7 +294,7 @@ const Aprobar = ({username}) => {
       allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        Axios.put("http://10.155.241.37:4001/aprobar", dataToUpdate)
+        Axios.put("https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/aprobar", dataToUpdate)
         .then(() => {
         pedidosBySector(userData[0].a_cargo); // Actualiza los pedidos del sector
           Swal.fire({
@@ -336,7 +336,7 @@ const Aprobar = ({username}) => {
       allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        Axios.put("http://10.155.241.37:4001/aprobar", dataToUpdate)
+        Axios.put("https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/aprobar", dataToUpdate)
         .then(() => {
         pedidosBySector(userData[0].a_cargo); // Actualiza los pedidos del sector
         closeDetalleModal();
@@ -362,7 +362,7 @@ const Aprobar = ({username}) => {
 
 
   const getMateriales = () => {
-    Axios.get("http://10.155.241.37:4001/materiales").then((response) => {
+    Axios.get("https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/materiales").then((response) => {
       setMateriales(response.data);
     })
   }
@@ -439,7 +439,7 @@ const Aprobar = ({username}) => {
   };
 
   const openDetalleModal = (pedido) => {
-    Axios.get(`http://10.155.241.37:4001/pedidos_detalle/${pedido.id}`)
+    Axios.get(`https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/pedidos_detalle/${pedido.id}`)
       .then((response) => {
         setDetalle(response.data);
         setCurrentPedido(pedido);

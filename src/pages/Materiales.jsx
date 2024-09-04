@@ -53,7 +53,7 @@ const Materiales = () => {
   };
 
   const getMateriales = () => {
-    Axios.get('http://10.155.241.37:4001/materiales').then((response) => {
+    Axios.get('https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/materiales').then((response) => {
       setMateriales(response.data);
     });
   };

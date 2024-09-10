@@ -92,7 +92,7 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }) {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    navigate("/login");
+    navigate("/");
     window.location.reload();
   };
 

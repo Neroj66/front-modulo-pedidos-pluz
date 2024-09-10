@@ -109,7 +109,7 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }) {
 
   const obtenerUser = async (user) => {
     try {
-      const response = await Axios.get(`https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/obtenerUser/${user}`);
+      const response = await Axios.get(`https://backend-modulo-pedidos.azurewebsites.net/auth/obtener/${user}`);
       setUserData(response.data);
     } catch (error) {
       if (error.response) {

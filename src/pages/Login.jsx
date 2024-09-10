@@ -19,7 +19,7 @@ const Login = () => {
       password: password
     };
     
-    fetch('https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/login', {
+    fetch('https://backend-modulo-pedidos.azurewebsites.net/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

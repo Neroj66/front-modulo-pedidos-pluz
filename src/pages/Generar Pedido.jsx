@@ -62,7 +62,7 @@ const Generar = ({username}) => {
   // Función para obtener el detalle del pedido
   const fetchPedidoDetalle = async (pedidoId) => {
     try {
-      const response = await Axios.get(`https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/pedidos_detalle/${pedidoId}`);
+      const response = await Axios.get(`https://backend-modulo-pedidos.azurewebsites.net/obt-pedidos/pedidos_detalle/${pedidoId}`);
       return response.data;
     } catch (error) {
       console.error('Error fetching pedido detalle:', error);
@@ -135,7 +135,7 @@ const Generar = ({username}) => {
 
   const obtenerUser = async (user) => {
     try {
-      const response = await Axios.get(`https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/obtenerUser/${user}`);
+      const response = await Axios.get(`https://backend-modulo-pedidos.azurewebsites.net/auth/obtener/${user}`);
       setUserData(response.data);
     } catch (error) {
       if (error.response) {
@@ -181,7 +181,7 @@ const Generar = ({username}) => {
   const pedidosByUser = async (user_id) => {
     try {
         
-        const response = await Axios.get(`https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/pedidos/user/${user_id}`);
+        const response = await Axios.get(`https://backend-modulo-pedidos.azurewebsites.net/obt-pedidos/pedidos/user/${user_id}`);
         console.log('Pedidos recibidos:', response.data); // Agregar este console.log
         setPedidos(response.data);
     } catch (error) {
@@ -191,7 +191,7 @@ const Generar = ({username}) => {
 
   const fetchServiciosBySector = async (sector_id) => {
     try {
-      const response = await Axios.get(`https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/servicios/sector/${sector_id}`);
+      const response = await Axios.get(`https://backend-modulo-pedidos.azurewebsites.net/otrasop/servicios/sector/${sector_id}`);
       setServicios(response.data);
     } catch (error) {
       console.error('Error fetching contratistas:', error);
@@ -199,7 +199,7 @@ const Generar = ({username}) => {
   };
   const fetchPdiByContratista = async (contratista_id) => {
     try {
-      const response = await Axios.get(`https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/pdi/contratista/${contratista_id}`);
+      const response = await Axios.get(`https://backend-modulo-pedidos.azurewebsites.net/otrasop/pdi/contratista/${contratista_id}`);
       setPdis(response.data);
     } catch (error) {
       console.error('Error fetching contratistas:', error);
@@ -364,7 +364,7 @@ const Generar = ({username}) => {
       return; // Salir de la función para evitar la eliminación
     }
   
-    Axios.post("https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/create", {
+    Axios.post("https://backend-modulo-pedidos.azurewebsites.net/crear/pedido", {
       contratista:userData[0].contratistaId,
       sector: sectorId,
       servicio: servicioId,
@@ -460,7 +460,7 @@ const Generar = ({username}) => {
     
   
     // Enviar solicitud de actualización
-    Axios.put("https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/update", data)
+    Axios.put("https://backend-modulo-pedidos.azurewebsites.net/operate-ped/update", data)
       .then(() => {
         pedidosByUser(userData[0].id);
         setShowEditModal(false); // Cerrar el modal de edición después de actualizar
@@ -495,7 +495,7 @@ const Generar = ({username}) => {
       allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        Axios.delete(`https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/delete/${val.id}`).then(() => {
+        Axios.delete(`https://backend-modulo-pedidos.azurewebsites.net/operate-ped/delete/${val.id}`).then(() => {
           pedidosByUser(userData[0].id);
           limpiarCampos();
           Swal.fire({
@@ -578,7 +578,7 @@ const Generar = ({username}) => {
       allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        Axios.put("https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/send_generacion", dataToUpdate)
+        Axios.put("https://backend-modulo-pedidos.azurewebsites.net/operate-ped/send_generacion", dataToUpdate)
         .then(() => {
           pedidosByUser(userData[0].id);
           Swal.fire({
@@ -624,7 +624,7 @@ const Generar = ({username}) => {
 
   const getSectores = async (contratista_id) => {
     if ( contratista_id) {
-      Axios.get(`https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/sectores/contratista/${contratista_id}`).then((response) => {
+      Axios.get(`https://backend-modulo-pedidos.azurewebsites.net/otrasop/sectores/contratista/${contratista_id}`).then((response) => {
         setSectores(response.data);
       })
   } else {
@@ -636,7 +636,7 @@ const Generar = ({username}) => {
       
   }
   const getMateriales = () => {
-    Axios.get("https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/materiales").then((response) => {
+    Axios.get("https://backend-modulo-pedidos.azurewebsites.net/otrasop/materiales").then((response) => {
       setMateriales(response.data);
     })
   }

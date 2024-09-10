@@ -53,7 +53,7 @@ const Materiales = () => {
   };
 
   const getMateriales = () => {
-    Axios.get('https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/materiales').then((response) => {
+    Axios.get('https://backend-modulo-pedidos.azurewebsites.net/otrasop/materiales').then((response) => {
       setMateriales(response.data);
     });
   };

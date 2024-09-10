@@ -68,7 +68,7 @@ const Home = () => {
   };
 
   const getPedidos = () => {
-    Axios.get('https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/pedidos').then((response) => {
+    Axios.get('https://backend-modulo-pedidos.azurewebsites.net/obt-pedidos/pedidos').then((response) => {
       setPedidos(response.data);
     });
   };

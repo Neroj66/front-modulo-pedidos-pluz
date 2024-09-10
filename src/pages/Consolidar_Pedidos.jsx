@@ -48,13 +48,13 @@ const Consolidar_Pedidos = ({ username }) => {
   }, []);
 
   const getContratistas = () => {
-    Axios.get("https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/contratistas").then((response) => {
+    Axios.get("https://backend-modulo-pedidos.azurewebsites.net/otrasop/contratistas").then((response) => {
       setContratistas(response.data);
     });
   };
 
   /*const getPedidos = () => {
-    Axios.get("https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/consolidador/pedidos").then((response) => {
+    Axios.get("https://backend-modulo-pedidos.azurewebsites.net/consolidador/pedidos").then((response) => {
       setPedidos(response.data);
     });
   };*/
@@ -111,7 +111,7 @@ const Consolidar_Pedidos = ({ username }) => {
       params.servicio= servicio_Id;
     }
 
-    Axios.get("https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/consolidador/pedidos", { params })
+    Axios.get("https://backend-modulo-pedidos.azurewebsites.net/consolidador/pedidos", { params })
       .then((response) => {
         setPedidos(response.data);
         setCurrentPage(1); // Reset page to 1 after new data fetch
@@ -124,7 +124,7 @@ const Consolidar_Pedidos = ({ username }) => {
 
 const fetchSectorByContratista = async (contratista_id) => {
   try {
-    const response = await Axios.get(`https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/sectores/contratista/${contratista_id}`);
+    const response = await Axios.get(`https://backend-modulo-pedidos.azurewebsites.net/otrasop/sectores/contratista/${contratista_id}`);
     setSectores(response.data);
   } catch (error) {
     console.error('Error fetching contratistas:', error);
@@ -134,7 +134,7 @@ const fetchSectorByContratista = async (contratista_id) => {
 
   const fetchPdiByContratista = async (contratista_id) => {
     try {
-      const response = await Axios.get(`https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/pdi/contratista/${contratista_id}`);
+      const response = await Axios.get(`https://backend-modulo-pedidos.azurewebsites.net/otrasop/pdi/contratista/${contratista_id}`);
       setPdis(response.data);
     } catch (error) {
       console.error('Error fetching contratistas:', error);
@@ -144,7 +144,7 @@ const fetchSectorByContratista = async (contratista_id) => {
 
   const fetchServiciosBySector = async (sector_id) => {
     try {
-      const response = await Axios.get(`https://api-pedidos-g6aucsd4a0hqg2dm.brazilsouth-01.azurewebsites.net/servicios/sector/${sector_id}`);
+      const response = await Axios.get(`https://backend-modulo-pedidos.azurewebsites.net/otrasop/servicios/sector/${sector_id}`);
       setServicios(response.data);
     } catch (error) {
       console.error('Error fetching contratistas:', error);

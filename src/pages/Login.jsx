@@ -18,7 +18,6 @@ const Login = () => {
       username: username,
       password: password
     };
-    
     fetch('https://backend-modulo-pedidos.azurewebsites.net/auth/login', {
       method: 'POST',
       headers: {
@@ -26,27 +25,33 @@ const Login = () => {
       },
       body: JSON.stringify(data)
     })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          // Maneja errores que no son 200 OK
+          return response.text().then(text => { 
+            throw new Error(text); 
+          });
+        }
+        return response.json();
+      })
       .then(result => {
         if (result.token) {
           localStorage.setItem('token', result.token);
           setUser(username);
           setErrorMessage("");
-          
-          // Recargar la página después de un retraso
           setTimeout(() => {
-            window.location.reload(); // Recarga la página
-            //navigate('/'); // Navega a la ruta principal
-          }, 1); // Retraso de 3 segundos (3000 ms)
+            window.location.reload();
+          }, 1);
         } else {
           setErrorMessage("Usuario y/o contraseña inválida.");
         }
       })
       .catch(error => {
-        console.log(error);
+        console.log('Error en la solicitud:', error.message);
         setErrorMessage("Ocurrió un error. Por favor, inténtalo de nuevo.");
       });
-  };
+    
+  }
 
   return (
     <>

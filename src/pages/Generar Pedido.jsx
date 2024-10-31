@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/Button';
 import { formatDate } from '../../src/assets/js/functions';
 import { Form, Dropdown , Pagination } from 'react-bootstrap';
 import { PaginationControl } from 'react-bootstrap-pagination-control';
+import EditableTableModal from '../components/ExcelMaterial';
 
 const Generar = ({username}) => {
   const { user } = useContext(UserContext);
@@ -53,6 +54,38 @@ const Generar = ({username}) => {
   const [searchPdi, setSearchPdi] = useState('');
   const [searchMaterial, setSearchMaterial] = useState('');
 
+  const [showExcelMat, setShowExcelMat] = useState(false);
+  const handleSave = (rows) => {
+    const newMaterials = [];
+    const invalidMaterials = []; // Para almacenar los materiales no válidos
+
+    rows.forEach(row => {
+        const material = materiales.find(m => m.matricula === parseInt(row.material.trim()));
+
+        if (material) {
+            newMaterials.push({
+                ...material,
+                quantity: row.cantidad,
+                importe: (material.precio * row.cantidad).toFixed(2),
+            });
+        } else {
+            invalidMaterials.push(row.material.trim()); // Agregar el código del material no válido
+        }
+    });
+
+    if (newMaterials.length > 0) {
+        setSelectedMaterials(prev => [...prev, ...newMaterials]);
+    }
+
+    if (invalidMaterials.length > 0) {
+        // Usando SweetAlert2 para mostrar la alerta
+        Swal.fire({
+            icon: 'warning',
+            title: 'Advertencia',
+            text: `Los siguientes materiales no son válidos: ${invalidMaterials.join(', ')}`,
+        });
+    }
+};
 
   const [showAll, setShowAll] = useState(true);
 
@@ -62,7 +95,7 @@ const Generar = ({username}) => {
   // Función para obtener el detalle del pedido
   const fetchPedidoDetalle = async (pedidoId) => {
     try {
-      const response = await Axios.get(`https://backend-modulo-pedidos.azurewebsites.net/obt-pedidos/pedidos_detalle/${pedidoId}`);
+      const response = await Axios.get(`http://10.155.241.37:4001/pedidos_detalle/${pedidoId}`);
       return response.data;
     } catch (error) {
       console.error('Error fetching pedido detalle:', error);
@@ -135,7 +168,7 @@ const Generar = ({username}) => {
 
   const obtenerUser = async (user) => {
     try {
-      const response = await Axios.get(`https://backend-modulo-pedidos.azurewebsites.net/auth/obtener/${user}`);
+      const response = await Axios.get(`http://10.155.241.37:4001/obtenerUser/${user}`);
       setUserData(response.data);
     } catch (error) {
       if (error.response) {
@@ -181,7 +214,7 @@ const Generar = ({username}) => {
   const pedidosByUser = async (user_id) => {
     try {
         
-        const response = await Axios.get(`https://backend-modulo-pedidos.azurewebsites.net/obt-pedidos/pedidos/user/${user_id}`);
+        const response = await Axios.get(`http://10.155.241.37:4001/pedidos/user/${user_id}`);
         console.log('Pedidos recibidos:', response.data); // Agregar este console.log
         setPedidos(response.data);
     } catch (error) {
@@ -191,7 +224,7 @@ const Generar = ({username}) => {
 
   const fetchServiciosBySector = async (sector_id) => {
     try {
-      const response = await Axios.get(`https://backend-modulo-pedidos.azurewebsites.net/otrasop/servicios/sector/${sector_id}`);
+      const response = await Axios.get(`http://10.155.241.37:4001/servicios/sector/${sector_id}`);
       setServicios(response.data);
     } catch (error) {
       console.error('Error fetching contratistas:', error);
@@ -199,7 +232,7 @@ const Generar = ({username}) => {
   };
   const fetchPdiByContratista = async (contratista_id) => {
     try {
-      const response = await Axios.get(`https://backend-modulo-pedidos.azurewebsites.net/otrasop/pdi/contratista/${contratista_id}`);
+      const response = await Axios.get(`http://10.155.241.37:4001/pdi/contratista/${contratista_id}`);
       setPdis(response.data);
     } catch (error) {
       console.error('Error fetching contratistas:', error);
@@ -364,7 +397,7 @@ const Generar = ({username}) => {
       return; // Salir de la función para evitar la eliminación
     }
   
-    Axios.post("https://backend-modulo-pedidos.azurewebsites.net/crear/pedido", {
+    Axios.post("http://10.155.241.37:4001/create", {
       contratista:userData[0].contratistaId,
       sector: sectorId,
       servicio: servicioId,
@@ -460,7 +493,7 @@ const Generar = ({username}) => {
     
   
     // Enviar solicitud de actualización
-    Axios.put("https://backend-modulo-pedidos.azurewebsites.net/operate-ped/update", data)
+    Axios.put("http://10.155.241.37:4001/update", data)
       .then(() => {
         pedidosByUser(userData[0].id);
         setShowEditModal(false); // Cerrar el modal de edición después de actualizar
@@ -495,7 +528,7 @@ const Generar = ({username}) => {
       allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        Axios.delete(`https://backend-modulo-pedidos.azurewebsites.net/operate-ped/delete/${val.id}`).then(() => {
+        Axios.delete(`http://10.155.241.37:4001/delete/${val.id}`).then(() => {
           pedidosByUser(userData[0].id);
           limpiarCampos();
           Swal.fire({
@@ -578,7 +611,7 @@ const Generar = ({username}) => {
       allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        Axios.put("https://backend-modulo-pedidos.azurewebsites.net/operate-ped/send_generacion", dataToUpdate)
+        Axios.put("http://10.155.241.37:4001/send_generacion", dataToUpdate)
         .then(() => {
           pedidosByUser(userData[0].id);
           Swal.fire({
@@ -624,7 +657,7 @@ const Generar = ({username}) => {
 
   const getSectores = async (contratista_id) => {
     if ( contratista_id) {
-      Axios.get(`https://backend-modulo-pedidos.azurewebsites.net/otrasop/sectores/contratista/${contratista_id}`).then((response) => {
+      Axios.get(`http://10.155.241.37:4001/sectores/contratista/${contratista_id}`).then((response) => {
         setSectores(response.data);
       })
   } else {
@@ -636,7 +669,7 @@ const Generar = ({username}) => {
       
   }
   const getMateriales = () => {
-    Axios.get("https://backend-modulo-pedidos.azurewebsites.net/otrasop/materiales").then((response) => {
+    Axios.get("http://10.155.241.37:4001/materiales").then((response) => {
       setMateriales(response.data);
     })
   }
@@ -731,7 +764,7 @@ const handleQuantityChange = (index, newQuantity) => {
           <button className='btn btn-primary m-2' onClick={() => {setMostrarFormulario(true); limpiarCampos();getSectores(userData[0].contratistaId);fetchPdiByContratista(userData[0].contratistaId);}}>Agregar Pedido</button>
         </div>
       </div>
-      <Modal id="firstModal" show={mostrarFormulario && !showMaterialModal} onHide={() => setMostrarFormulario(false)}  backdrop="static" centered>
+      <Modal id="firstModal" show={mostrarFormulario && !showMaterialModal && !showExcelMat} onHide={() => setMostrarFormulario(false)}  backdrop="static" centered>
         <Modal.Header closeButton>
           <Modal.Title>Agregar Pedido</Modal.Title>
         </Modal.Header>
@@ -897,6 +930,12 @@ const handleQuantityChange = (index, newQuantity) => {
             <button className="btn btn-secondary mb" onClick={()=> {setShowMaterialModal(true);setSearchMaterial("");setMaterialQuantity(1);}}>
               Agregar Material
             </button>
+            <button className="btn btn-success mb" onClick={()=> {setShowExcelMat(true)}}>
+              Copiar de Excel
+            </button>
+
+            
+            
             <ul className="list-group"style={{ maxHeight: '200px', overflowY: 'auto' }}>
               {selectedMaterials.map((material, index) => (
                 <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
@@ -911,8 +950,15 @@ const handleQuantityChange = (index, newQuantity) => {
               <button type="button" className="btn btn-secondary" onClick={() => setMostrarFormulario(false)}>Cerrar</button>
               <button type="button" className="btn btn-primary" onClick={add}>Guardar</button>
         </Modal.Footer>
-
       </Modal>
+      
+      <EditableTableModal 
+            show={showExcelMat} 
+            handleClose={() => setShowExcelMat(false)}
+            onSave={handleSave} 
+        />
+
+      
       <Modal   id="secondModal" show={showMaterialModal} onHide={()=>setShowMaterialModal(false)} backdrop="static" centered>
         <Modal.Header closeButton>
           <Modal.Title>Agregar Material</Modal.Title>

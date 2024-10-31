@@ -54,6 +54,12 @@ const Generar = ({username}) => {
   const [searchPdi, setSearchPdi] = useState('');
   const [searchMaterial, setSearchMaterial] = useState('');
 
+
+  const [showAll, setShowAll] = useState(true);
+
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' });
+
+
   const [showExcelMat, setShowExcelMat] = useState(false);
   const handleSave = (rows) => {
     const newMaterials = [];
@@ -86,12 +92,6 @@ const Generar = ({username}) => {
         });
     }
 };
-
-  const [showAll, setShowAll] = useState(true);
-
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' });
-
-
   // Función para obtener el detalle del pedido
   const fetchPedidoDetalle = async (pedidoId) => {
     try {
@@ -925,7 +925,7 @@ const handleQuantityChange = (index, newQuantity) => {
           >
             <strong>Total:</strong> {total}
           </div>
-        <div className="input-group mb-3">
+          <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">Materiales: </span>
             <button className="btn btn-secondary mb" onClick={()=> {setShowMaterialModal(true);setSearchMaterial("");setMaterialQuantity(1);}}>
               Agregar Material
@@ -947,15 +947,14 @@ const handleQuantityChange = (index, newQuantity) => {
               <button type="button" className="btn btn-secondary" onClick={() => setMostrarFormulario(false)}>Cerrar</button>
               <button type="button" className="btn btn-primary" onClick={add}>Guardar</button>
         </Modal.Footer>
-      </Modal>
-      
-      <EditableTableModal 
+
+        <EditableTableModal 
             show={showExcelMat} 
             handleClose={() => setShowExcelMat(false)}
             onSave={handleSave} 
         />
-
-      
+        
+      </Modal>
       <Modal   id="secondModal" show={showMaterialModal} onHide={()=>setShowMaterialModal(false)} backdrop="static" centered>
         <Modal.Header closeButton>
           <Modal.Title>Agregar Material</Modal.Title>

@@ -258,9 +258,9 @@ const Consolidar_Logistica = ({ username }) => {
                     <td>{item.nombre_pdi}</td>
                     <td>{item.nombre_contratista}</td>
                     <td>{item.matricula}</td>
-                    <td>{item.precio}</td>
-                    <td>{item.cantidad_total}</td>
-                    <td>{item.importe_total}</td>
+                    <td>{Number(item.precio).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                    <td>{Number(item.cantidad_total).toLocaleString('en-US')}</td>
+                    <td>{Number(item.importe_total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                   </tr>
                 ))}
               </tbody>

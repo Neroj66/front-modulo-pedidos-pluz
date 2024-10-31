@@ -537,7 +537,7 @@ const Aprobar = ({username}) => {
             marginRight: '5vh'
           }}
         >
-          <strong>Total:</strong> {total}
+          <strong>Total:</strong> {Number(total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
         </div>
         </Modal.Header>
         <Modal.Body>
@@ -607,7 +607,7 @@ const Aprobar = ({username}) => {
               <td>{val.LCL_ING}</td>
               <td>{val.nombre_usuario}</td>
               <td>{formatDate(val.fecha)}</td>
-              <td>{val.total}</td>
+              <td>{Number(val.total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
               <td >
                 <Status status={val.estado_id}/>
               </td>
@@ -661,7 +661,7 @@ const Aprobar = ({username}) => {
                   marginRight: '15vh'
                 }}
               >
-                <strong>Total:</strong> {currentPedido.total}
+                <strong>Total:</strong> {Number(currentPedido.total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </div>
           </Modal.Header>
           <Modal.Body>
@@ -685,8 +685,8 @@ const Aprobar = ({username}) => {
                       <td>{item.matricula}</td>
                       <td>{item.nombre_material}</td>
                       <td>{item.cantidad}</td>
-                      <td>{item.precio_material}</td>
-                      <td>{item.importe}</td>
+                      <td>{Number(item.precio_material).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                      <td>{Number(item.importe).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                     </tr>
                   ))}
                 </tbody>

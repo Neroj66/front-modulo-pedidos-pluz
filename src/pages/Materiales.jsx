@@ -195,7 +195,7 @@ const Materiales = () => {
                   <td>{val.matricula}</td>
                   <td>{val.descripcion}</td>
                   <td>{val.unidad}</td>
-                  <td>{val.precio}</td>
+                  <td>{Number(val.precio).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                   <td>{val.existencia}</td>
                 </tr>
               ))}

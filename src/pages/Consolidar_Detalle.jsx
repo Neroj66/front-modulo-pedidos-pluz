@@ -742,10 +742,10 @@ const Consolidar_Detalle = ({ username }) => {
             <td>{formatDate(item.fecha)}</td>
             <td>{item.matricula}</td>
             <td>{item.nombre_material}</td>
-            <td>{item.cantidad}</td>
-            <td>{item.precio_material}</td>
-            <td>{item.importe}</td>
-            <td>{item.total}</td>
+            <td>{Number(item.cantidad).toLocaleString('en-US')}</td>
+            <td>{Number(item.precio_material).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+            <td>{Number(item.importe).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+            <td>{Number(item.total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
             <td>{<Status status={item.estado_id}/>}</td>
           </tr>
         ))}

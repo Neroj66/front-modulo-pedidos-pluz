@@ -923,7 +923,7 @@ const handleQuantityChange = (index, newQuantity) => {
               marginBottom: '15px'
             }}
           >
-            <strong>Total:</strong> {total}
+            <strong>Total:</strong> {Number(total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
           </div>
         <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">Materiales: </span>
@@ -1233,7 +1233,7 @@ const handleQuantityChange = (index, newQuantity) => {
               <td>{val.LCL_ING}</td>
               <td>{val.nombre_usuario}</td>
               <td>{formatDate(val.fecha)}</td>
-              <td>{val.total}</td>
+              <td>{Number(val.total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
               <td >
                 <Status status={val.estado_id}/>
               </td>

@@ -233,10 +233,10 @@ const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
               <td>{val.lcl}</td>
               <td>{val.matricula}</td>
               <td>{val.nombre_material}</td>
-              <td>{val.cantidad}</td>
-              <td>{val.precio_material}</td>
-              <td>{val.importe}</td>
-              <td>{val.total}</td>
+              <td>{Number(val.cantidad).toLocaleString('en-US')}</td>
+              <td>{Number(val.precio_material).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+              <td>{Number(val.importe).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+              <td>{Number(val.total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
             </tr>
           ))}
         </tbody>

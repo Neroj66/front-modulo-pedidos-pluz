@@ -178,17 +178,6 @@ const Validar = ({username}) => {
     });
   };
   
-  
-
-
-
-  
-  
-  
-  
-  const closeMaterialModal = () => {
-    setShowMaterialModal(false);
-  };
 
 
   
@@ -233,7 +222,7 @@ const Validar = ({username}) => {
               <td>{val.LCL_ING}</td>
               <td>{val.nombre_usuario}</td>
               <td>{formatDate(val.fecha)}</td>
-              <td>{val.total}</td>
+              <td>{Number(val.total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
               <td >
                 <Status status={val.estado_id}/>
               </td>

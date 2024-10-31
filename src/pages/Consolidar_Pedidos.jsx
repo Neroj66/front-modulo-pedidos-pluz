@@ -714,7 +714,7 @@ const filteredSectores = showAll
             <td>{item.LCL_ING}</td>
             <td>{item.nombre_usuario}</td>
             <td>{formatDate(item.fecha)}</td>
-            <td>{item.total}</td>
+            <td>{Number(item.total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
             <td>{<Status status={item.estado_id}/>}</td>
           </tr>
         ))}

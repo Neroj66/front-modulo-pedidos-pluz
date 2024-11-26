@@ -45,13 +45,13 @@ const Consolidar_Detalle = ({ username }) => {
   }, []);
 
   /*const getPedidos = () => {
-    Axios.get("https://backend-modulo-pedidos.azurewebsites.net/pedidos_detalle/consolidador").then((response) => {
+    Axios.get("http://10.155.241.37:4001/pedidos_detalle/consolidador").then((response) => {
       setPedidos(response.data);
     });
   };*/
 
   const getContratistas = () => {
-    Axios.get("https://backend-modulo-pedidos.azurewebsites.net/otrasop/contratistas").then((response) => {
+    Axios.get("http://10.155.241.37:4001/contratistas").then((response) => {
       setContratistas(response.data);
     });
   };
@@ -106,7 +106,7 @@ const Consolidar_Detalle = ({ username }) => {
       params.servicio= servicio_Id;
     }
 
-    Axios.get("https://backend-modulo-pedidos.azurewebsites.net/consolidador/detalle", { params })
+    Axios.get("http://10.155.241.37:4001/consolidador/detalle", { params })
       .then((response) => {
         setPedidos(response.data);
         setCurrentPage(1); // Reset page to 1 after new data fetch
@@ -118,7 +118,7 @@ const Consolidar_Detalle = ({ username }) => {
 
   const fetchSectorByContratista = async (contratista_id) => {
     try {
-      const response = await Axios.get(`https://backend-modulo-pedidos.azurewebsites.net/otrasop/sectores/contratista/${contratista_id}`);
+      const response = await Axios.get(`http://10.155.241.37:4001/sectores/contratista/${contratista_id}`);
       setSectores(response.data);
     } catch (error) {
       console.error('Error fetching contratistas:', error);
@@ -128,7 +128,7 @@ const Consolidar_Detalle = ({ username }) => {
   
     const fetchPdiByContratista = async (contratista_id) => {
       try {
-        const response = await Axios.get(`https://backend-modulo-pedidos.azurewebsites.net/otrasop/pdi/contratista/${contratista_id}`);
+        const response = await Axios.get(`http://10.155.241.37:4001/pdi/contratista/${contratista_id}`);
         setPdis(response.data);
       } catch (error) {
         console.error('Error fetching contratistas:', error);
@@ -138,7 +138,7 @@ const Consolidar_Detalle = ({ username }) => {
   
     const fetchServiciosBySector = async (sector_id) => {
       try {
-        const response = await Axios.get(`https://backend-modulo-pedidos.azurewebsites.net/otrasop/servicios/sector/${sector_id}`);
+        const response = await Axios.get(`http://10.155.241.37:4001/servicios/sector/${sector_id}`);
         setServicios(response.data);
       } catch (error) {
         console.error('Error fetching contratistas:', error);
@@ -274,9 +274,9 @@ const Consolidar_Detalle = ({ username }) => {
     { label: "Contratista", key: "nombre_contratista" },
     { label: "Servicio", key: "nombre_servicio" },
     { label: "PDI", key: "nombre_pdi" },
-    { label: "LCL", key: "lcl" },
-    { label: "Usuario", key: "nombre_usuario" },
-    { label: "Fecha", key: "fecha" },
+    { label: "Fecha Validado", key: "fecha_valid" },
+    { label: "Validador", key: "nombre_usuario" },
+    { label: "Fecha Generado", key: "fecha" },
     { label: "Matrícula", key: "matricula" },
     { label: "Material", key: "nombre_material" },
     { label: "Cantidad", key: "cantidad" },
@@ -318,9 +318,9 @@ const Consolidar_Detalle = ({ username }) => {
       { header: 'Servicio', key: 'nombre_servicio', width: 20 },
       
       { header: 'PDI', key: 'nombre_pdi', width: 20 },
-      { header: 'LCL', key: 'lcl', width: 10 },
-      { header: 'Usuario', key: 'nombre_usuario', width: 20 },
-      { header: 'Fecha', key: 'fecha', width: 20 },
+      { header: 'Fecha validado', key: 'fecha_valid', width: 20 },
+      { header: 'Validador', key: 'nombre_usuario', width: 20 },
+      { header: 'Fecha Generado', key: 'fecha', width: 20 },
       { header: 'E4E', key: 'matricula', width: 10 },
       { header: 'Material', key: 'nombre_material', width: 20 },
       { header: 'Cnt.', key: 'cantidad', width: 10 },
@@ -695,15 +695,16 @@ const Consolidar_Detalle = ({ username }) => {
           <th  scope="col" 
                   onClick={() => handleSort('nombre_pdi')}  
                   className={sortConfig.key === 'nombre_pdi' ? (sortConfig.direction === 'asc' ? 'asc' : 'desc') : ''}>PDI</th>
-          <th  scope="col" 
-                  onClick={() => handleSort('lcl')}  
-                  className={sortConfig.key === 'lcl' ? (sortConfig.direction === 'asc' ? 'asc' : 'desc') : ''}>LCL</th>
+          <th scope="col" 
+                  onClick={() => handleSort('fecha_valid')}  
+                  className={sortConfig.key === 'fecha_valid' ? (sortConfig.direction === 'asc' ? 'asc' : 'desc') : ''}>Fecha Validado</th>
+
           <th  scope="col" 
                   onClick={() => handleSort('nombre_usuario')}  
-                  className={sortConfig.key === 'nombre_usuario' ? (sortConfig.direction === 'asc' ? 'asc' : 'desc') : ''}>Usuario</th>
+                  className={sortConfig.key === 'nombre_usuario' ? (sortConfig.direction === 'asc' ? 'asc' : 'desc') : ''}>Validador</th>
           <th scope="col" 
                   onClick={() => handleSort('fecha')}  
-                  className={sortConfig.key === 'fecha' ? (sortConfig.direction === 'asc' ? 'asc' : 'desc') : ''}>Fecha</th>
+                  className={sortConfig.key === 'fecha' ? (sortConfig.direction === 'asc' ? 'asc' : 'desc') : ''}>Fecha Generado</th>
           <th scope="col" 
                   onClick={() => handleSort('matricula')}  
                   className={sortConfig.key === 'matricula' ? (sortConfig.direction === 'asc' ? 'asc' : 'desc') : ''}>E4E</th>
@@ -737,14 +738,14 @@ const Consolidar_Detalle = ({ username }) => {
             <td>{item.nombre_contratista}</td>
             <td>{item.nombre_servicio}</td>
             <td>{item.nombre_pdi}</td>
-            <td>{item.lcl}</td>
+            <td>{formatDate(item.fecha_valid)}</td>
             <td>{item.nombre_usuario}</td>
             <td>{formatDate(item.fecha)}</td>
             <td>{item.matricula}</td>
             <td>{item.nombre_material}</td>
-            <td>{Number(item.cantidad).toLocaleString('en-US')}</td>
-            <td>{Number(item.precio_material).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-            <td>{Number(item.importe).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+            <td>{item.cantidad}</td>
+            <td>{item.precio_material}</td>
+            <td>{item.importe}</td>
             <td>{Number(item.total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
             <td>{<Status status={item.estado_id}/>}</td>
           </tr>

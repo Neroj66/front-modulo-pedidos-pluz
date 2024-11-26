@@ -297,6 +297,7 @@ const Consolidar_Detalle = ({ username }) => {
   const mappedItems = pedidosList.map(item => ({
     ...item,
     fecha: formatDate(item.fecha),
+    fecha_valid: formatDate(item.fecha_valid),
     estado: estadoMapping[item.estado_id] || item.estado_id
   }));
 

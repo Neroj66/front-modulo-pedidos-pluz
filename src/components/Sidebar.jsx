@@ -22,11 +22,6 @@ const linksArray = [
     roles: [2, 3, 4], // Only roles 2, 3, and 4 can access this link
   },
   {
-    label: "Diagramas",
-    icon: <MdOutlineAnalytics />,
-    to: "/diagramas",
-  },
-  {
     label: "Reportes",
     icon: <MdOutlineAnalytics />,
     to: "/reportes",

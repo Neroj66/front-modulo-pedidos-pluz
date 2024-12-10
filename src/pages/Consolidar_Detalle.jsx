@@ -444,10 +444,10 @@ const Consolidar_Detalle = ({ username }) => {
               </div>
             </div>
             <div className="col-md-4 mb-2">
-              <label htmlFor="dateTo">Hasta:</label>
+              <label htmlFor="dateTimeTo">Hasta:</label>
               <div className="input-group mb-3" style={{ width: '100%' }}>
               <input
-                type="date"
+                type="datetime-local"
                 id="dateTo"
                 value={dateTo}
                 onChange={(e) => setDateTo(e.target.value)}

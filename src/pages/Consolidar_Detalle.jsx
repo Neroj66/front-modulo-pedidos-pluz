@@ -422,10 +422,10 @@ const Consolidar_Detalle = ({ username }) => {
           {error && <div className="alert alert-danger">{error}</div>}
           <div className="row">
             <div className="col-md-4 mb-2">
-            <label htmlFor="dateTimeFrom">Desde:</label>
+            <label htmlFor="dateFrom">Desde:</label>
               <div className="input-group mb-3" style={{ width: '100%' }}>
               <input
-                type="datetime-local"
+                type="date"
                 id="dateFrom"
                 value={dateFrom}
                 onChange={(e) => setDateFrom(e.target.value)}
@@ -444,10 +444,10 @@ const Consolidar_Detalle = ({ username }) => {
               </div>
             </div>
             <div className="col-md-4 mb-2">
-              <label htmlFor="dateTimeTo">Hasta:</label>
+              <label htmlFor="dateTo">Hasta:</label>
               <div className="input-group mb-3" style={{ width: '100%' }}>
               <input
-                type="datetime-local"
+                type="date"
                 id="dateTo"
                 value={dateTo}
                 onChange={(e) => setDateTo(e.target.value)}

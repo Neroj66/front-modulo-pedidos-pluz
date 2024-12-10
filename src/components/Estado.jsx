@@ -29,7 +29,11 @@ const Status = ({ status }) => {
       className += 'bg-danger';
       labelText = 'Rechazo(Valid.)';
       break;
-        
+    case 6:
+      className += 'bg-secondary';
+      labelText = 'Vencido(no solic.)';
+      break; 
+      
     default:
       className += 'bg-secondary';
       labelText = 'Desconocido';

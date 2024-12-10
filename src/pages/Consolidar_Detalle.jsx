@@ -291,7 +291,8 @@ const Consolidar_Detalle = ({ username }) => {
     2: 'Aprobado',
     3: 'Rechazado por Aprobador',
     4: 'Validado',
-    5: 'Rechazado por Validador'
+    5: 'Rechazado por Validador',
+    6: "Vencido"
   };
 
   const mappedItems = pedidosList.map(item => ({
@@ -421,10 +422,10 @@ const Consolidar_Detalle = ({ username }) => {
           {error && <div className="alert alert-danger">{error}</div>}
           <div className="row">
             <div className="col-md-4 mb-2">
-            <label htmlFor="dateFrom">Desde:</label>
+            <label htmlFor="dateTimeFrom">Desde:</label>
               <div className="input-group mb-3" style={{ width: '100%' }}>
               <input
-                type="date"
+                type="datetime-local"
                 id="dateFrom"
                 value={dateFrom}
                 onChange={(e) => setDateFrom(e.target.value)}

@@ -41,6 +41,7 @@ const Home = () => {
     3: 'Rechazado por Aprobador',
     4: 'Validado',
     5: 'Rechazado por Validador',
+    6: "Vencido"
   };
 
   useEffect(() => {

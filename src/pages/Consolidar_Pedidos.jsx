@@ -291,7 +291,8 @@ const filteredSectores = showAll
     2: 'Aprobado',
     3: 'Rechazado por Aprobador',
     4: 'Validado',
-    5: 'Rechazado por Validador'
+    5: 'Rechazado por Validador',
+    6: "Vencido"
   };
 
 

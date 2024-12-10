@@ -82,7 +82,8 @@ const Materiales_Pedidos = ({username}) => {
     2: 'Aprobado',
     3: 'Rechazado por Aprobador',
     4: 'Validado',
-    5: 'Rechazado por Validador'
+    5: 'Rechazado por Validador',
+    6: "Vencido"
   };
 
   const mappedItems = pedidosList.map(item => ({
